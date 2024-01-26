@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function drawboard() {
+var blet =65;
+for (i=1; i<=26; i++) {
+
+     var x = document.createElement("LABEL");
+     var y = document.createElement("BUTTON");
+     var bt = document.createTextNode(' ' + String.fromCharCode(blet) + ' ' );
+blet++;
+     y.appendChild(bt);
+    var t = document.createTextNode("___");
+    x.appendChild(t);
+
+   document.getElementById("playboard").appendChild(x);
+document.getElementById("draggers").appendChild(y);
+var drattr = document.createAttribute("draggable");
+drattr.value = true;
+y.setAttribute("value", blet);
+y.setAttributeNode(drattr); 
+
+} document.write(y.value());
+}
+
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+}
+
+</script>
+
+<style>
+label {
+background-color: gray;
+height: 100px;
+width: 100px;
+border: 2px solid red;
+}
+#placeit
+{
+width: 400px;
+}
+</style>
+</head>
+<body>
+<p>Choose a board to place</p>
+<div id="placeit">
+<form name="playboard" id="playboard" action="">
+<input type="checkbox" value="kboard">Keyboard</input>
+<input type="checkbox" value="kboard">Keypad</input>
+<input type="checkbox" value="bmap">Map</input>
+<input type="checkbox" value="blayout">Layout</input>
+<input type="checkbox" value="bsys">System</input>
+<br><br><br>
+<select id="kbboard">
+<option>Alpha - ASDF Touch</option>
+<option>Alpha - ASDF Drag</option>
+<option>Alpha/Numeric Touch</option>
+<option>Alpha/Numeric Drag</option>
+</select>
+<select id="kpboard">
+<option>Telephone</option>
+<option>10-Key</option>
+<option>Calculator</option>
+</select>
+<select id="mapboard">
+<option>County</option>
+<option> City</option>
+<option>State</option>
+<option>Country</option>
+<option>Government</option>
+<option>Hospital</option>
+
+</select>
+<select id="spaceboard">
+<option>Cars - Dashboard</option>
+<option>Cars - Engine</option>
+<option>Cars - Power</option>
+<option>Home</option>
+<option>Building</option>
+</select>
+
+<select id="sysboard">
+<option>Logical - Hospital</option>
+<option>Logical - Government</option>
+<option>Logical - School</option>
+<option>Logical - Information</option>
+<option>Logical - Transportation</option>
+<option>Logical - Supply Chain</option>
+<option>Physical - Transportation</option>
+<option>Physical - Airport</option>
+<option>Physical - Delivery</option>
+</select>
+<br><br>
+
+  <label for="valu2">_____</label>
+  <label for=""> _____ </label>
+<br>
+  <button type="button" onclick="drawboard()">Get Board</button>
+</form>
+<br><br><br>
+</div>
+<div id="draggers">
+</div>
+
+</body>
+</html>
